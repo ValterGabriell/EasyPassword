@@ -17,6 +17,7 @@ class PasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val id = intent.extras?.get("id")
         if (id != null) {
             getItemById(id as Long)
@@ -29,6 +30,8 @@ class PasswordActivity : AppCompatActivity() {
 
     fun getItemById(id: Long) {
         viewModel.getItemById(id).also {
+            val type = viewModel.item.value.password.split("|").get(1)
+            binding.txtType.text = type
             binding.txtPlace.text = viewModel.item.value.place
             binding.txtDesc.text = viewModel.item.value.passwordEncoded
         }

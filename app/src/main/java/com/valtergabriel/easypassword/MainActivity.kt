@@ -30,14 +30,17 @@ class MainActivity : AppCompatActivity() {
     fun getAllItems() {
         viewModel.getAllPlants().also {
             val list = viewModel.listOfItems.value
-            binding.txtList.text = "Senha de ${list[0].place}"
+            if (list.isNotEmpty()){
+                binding.txtList.text = "Senha de ${list[0].place}"
 
-            binding.txtList.setOnClickListener {
-                Intent(this, PasswordActivity::class.java).also { intent ->
-                    intent.putExtra("id", list[0].id)
-                    startActivity(intent)
+                binding.txtList.setOnClickListener {
+                    Intent(this, PasswordActivity::class.java).also { intent ->
+                        intent.putExtra("id", list[0].id)
+                        startActivity(intent)
+                    }
                 }
             }
+
         }
 
     }
