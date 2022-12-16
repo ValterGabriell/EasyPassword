@@ -19,6 +19,11 @@ class PasswordViewModel(private val myRepositoryImpl: MyRepositoryImpl) : ViewMo
             val item = myRepositoryImpl.getItemById(id)
             _item.value = item
         }
+    }
 
+    fun deleteItemById(id: Long) {
+        viewModelScope.launch {
+            myRepositoryImpl.deleteItemById(id)
+        }
     }
 }

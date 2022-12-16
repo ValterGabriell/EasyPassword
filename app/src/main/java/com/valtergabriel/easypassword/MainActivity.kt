@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.valtergabriel.easypassword.adapters.MyAdapter
 import com.valtergabriel.easypassword.databinding.ActivityAddPasswordBinding
@@ -37,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.getAllPlants().also {
             val list = viewModel.listOfItems.value
             if (list.isNotEmpty()) {
-                Log.i("TAG", list.toString())
+                binding.rvMain.visibility = View.VISIBLE
+                binding.textView5.visibility = View.GONE
                 adapter = MyAdapter(list)
                 binding.rvMain.adapter = adapter
                 binding.rvMain.layoutManager = LinearLayoutManager(this)
@@ -47,6 +49,9 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                 }
+            }else{
+                binding.rvMain.visibility = View.GONE
+                binding.textView5.visibility = View.VISIBLE
             }
 
         }

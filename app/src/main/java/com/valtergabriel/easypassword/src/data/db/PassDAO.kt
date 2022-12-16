@@ -11,9 +11,12 @@ interface PassDAO {
     fun insertNewItem(passEntity: PassEntity)
 
     @Query("SELECT * FROM PassTable")
-    fun getAllItems():List<PassEntity>
+    fun getAllItems(): List<PassEntity>
 
     @Query("SELECT * FROM PassTable WHERE id = :id")
-    fun getItemById(id:Long):PassEntity
+    fun getItemById(id: Long): PassEntity
+
+    @Query("DELETE FROM PassTable WHERE id = :id")
+    fun deleteItemById(id: Long)
 
 }

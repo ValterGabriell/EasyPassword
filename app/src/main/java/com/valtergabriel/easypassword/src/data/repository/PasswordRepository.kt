@@ -6,6 +6,7 @@ interface PasswordRepository {
     suspend fun insertNewItem(passwordModel: PasswordModel)
     suspend fun getAllItems(): List<PasswordModel>
     suspend fun getItemById(id: Long): PasswordModel?
+    suspend fun deleteItemById(id: Long): Boolean
 
 
 }

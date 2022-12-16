@@ -4,6 +4,7 @@ import android.content.Context
 import com.valtergabriel.easypassword.src.data.db.DatabaseManager
 import com.valtergabriel.easypassword.src.data.db.PassEntity
 import com.valtergabriel.easypassword.src.domain.model.PasswordModel
+import java.io.IOException
 
 class MyRepositoryImpl(context: Context) : PasswordRepository {
     private val passDAO = DatabaseManager.getInstance(context).getDao()
@@ -18,6 +19,16 @@ class MyRepositoryImpl(context: Context) : PasswordRepository {
 
     override suspend fun getItemById(id: Long): PasswordModel {
         return passDAO.getItemById(id).fromEntityToModel()
+    }
+
+    override suspend fun deleteItemById(id: Long): Boolean {
+        try {
+            passDAO.deleteItemById(id).also {
+                return true
+            }
+        } catch (e: IOException) {
+            return false
+        }
     }
 
 
