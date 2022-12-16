@@ -21,6 +21,7 @@ class AddPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.radioGroup.setOnCheckedChangeListener { radioGroup, i ->
             val radioButton = radioGroup.findViewById<RadioButton>(i)
